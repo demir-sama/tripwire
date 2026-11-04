@@ -1,0 +1,12 @@
+export const NETWORK = "testnet" as const;
+export const FACTORY = process.env.NEXT_PUBLIC_FACTORY || "tripwire.testnet";
+export const RPC = process.env.NEXT_PUBLIC_RPC || "https://rpc.testnet.fastnear.com";
+export const TOKEN_CODE_HASH = "B4tk97kLWUVMVfPYXcLvAqxTr9viJAeFaaEhqHqPYY3c";
+export const SANDBOX_SYMBOL = "GRUG";
+export const SANDBOX_CREATOR = "tripwire-ops.testnet";
+export const REPO = "https://github.com/demir-sama/tripwire";
+export const explorerTx = (h: string) => `https://testnet.nearblocks.io/txns/${h}`;
+export const explorerAcct = (a: string) => `https://testnet.nearblocks.io/address/${a}`;
+export const tokenAccount = (symbol: string) => `${symbol.toLowerCase()}.${FACTORY}`;
+export const ONE_YOCTO = "1";
+export const GAS = "100000000000000";
