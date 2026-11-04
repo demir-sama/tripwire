@@ -18,7 +18,7 @@
 | | |
 |---|---|
 | Live app | https://tripwire-sama-5806.vercel.app |
-| Demo video | [Google Drive](https://drive.google.com/) (placeholder). A YouTube link is coming. |
+| Demo video (X) | [x.com/samaisback/status/2118030472676769978](https://x.com/samaisback/status/2118030472676769978) |
 | Repository | https://github.com/demir-sama/tripwire (MIT) |
 | Factory contract | [`tripwire.testnet`](https://testnet.nearblocks.io/address/tripwire.testnet) |
 | A failed rug tx | [`B37X2Ur6k98uQS9T1qTHRatcYQM6JuVQXzzYzwjrzP6c`](https://testnet.nearblocks.io/txns/B37X2Ur6k98uQS9T1qTHRatcYQM6JuVQXzzYzwjrzP6c): `withdraw_liquidity` on `sprung.tripwire.testnet` → `TRIPWIRE[LIQUIDITY_LOCK] 0.0497 NEAR of curve liquidity is locked in code; it only leaves through sells` |
