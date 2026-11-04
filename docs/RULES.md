@@ -29,9 +29,11 @@ The launch form's presets:
 
 | Preset | Buy | Sell | Wallet | Fee | Cooldown | Dev bag |
 |---|---|---|---|---|---|---|
-| Fortress | 0.5% | 0.25% | 1% | 0.5% | 300 s | 3% / 90 d |
-| Balanced | 1% | 0.5% | 2% | 1% | 60 s | 5% / 30 d |
-| Loose but safe | 3% | 2% | 8% | 2% | 15 s | 8% / 14 d |
+| Fortress | 0.5% | 0.25% | 1.5% | 0.5% | 300 s | 1% / 90 d |
+| Balanced | 1% | 0.5% | 3% | 1% | 60 s | 2% / 30 d |
+| Loose but safe | 3% | 2% | 10% | 2% | 15 s | 5% / 14 d |
+
+Every preset keeps `dev bag + max buy <= max wallet`, so the creator's vesting allocation never puts their own wallet over the `MAX_WALLET` cap on their first full-size buy. The form warns when custom settings break that.
 
 ## The ten rules
 

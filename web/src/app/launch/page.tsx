@@ -11,10 +11,12 @@ import { compact, pct, toYocto } from "@/lib/format";
 import { glyphDataUrl } from "@/lib/glyph";
 import type { Rules, TokenEntry } from "@/lib/types";
 
+// Every preset keeps creator_alloc + max_buy <= max_wallet, so the creator can still
+// make at least one full-size buy without tripping MAX_WALLET.
 const PRESETS: Record<string, Rules> = {
-  Fortress: { max_buy_bps: 50, max_sell_bps: 25, max_wallet_bps: 100, fee_bps: 50, sell_cooldown_sec: 300, creator_alloc_bps: 300, creator_vest_days: 90 },
-  Balanced: { max_buy_bps: 100, max_sell_bps: 50, max_wallet_bps: 200, fee_bps: 100, sell_cooldown_sec: 60, creator_alloc_bps: 500, creator_vest_days: 30 },
-  "Loose but safe": { max_buy_bps: 300, max_sell_bps: 200, max_wallet_bps: 800, fee_bps: 200, sell_cooldown_sec: 15, creator_alloc_bps: 800, creator_vest_days: 14 },
+  Fortress: { max_buy_bps: 50, max_sell_bps: 25, max_wallet_bps: 150, fee_bps: 50, sell_cooldown_sec: 300, creator_alloc_bps: 100, creator_vest_days: 90 },
+  Balanced: { max_buy_bps: 100, max_sell_bps: 50, max_wallet_bps: 300, fee_bps: 100, sell_cooldown_sec: 60, creator_alloc_bps: 200, creator_vest_days: 30 },
+  "Loose but safe": { max_buy_bps: 300, max_sell_bps: 200, max_wallet_bps: 1000, fee_bps: 200, sell_cooldown_sec: 15, creator_alloc_bps: 500, creator_vest_days: 14 },
 };
 const SUPPLIES = [1_000_000, 100_000_000, 1_000_000_000, 69_000_000_000, 420_000_000_000];
 
@@ -68,6 +70,9 @@ export default function Launch() {
     if (tagline.length > 140) p.push("Tagline max 140 characters");
     return p;
   }, [name, sym, taken, tagline]);
+  const walletWarn = rules.creator_alloc_bps + rules.max_buy_bps > rules.max_wallet_bps
+    ? `Your allocation (${pct(rules.creator_alloc_bps)}) plus one max buy (${pct(rules.max_buy_bps)}) exceeds the ${pct(rules.max_wallet_bps)} wallet cap, so your own buys will trip MAX_WALLET.`
+    : null;
 
   async function launch() {
     if (!accountId) return setOpen(true);
@@ -127,6 +132,7 @@ export default function Launch() {
                 );
               })}
             </div>
+            {walletWarn && <p className="mt-6 rounded-xl border border-warn/40 bg-warn/10 px-4 py-3 font-mono text-[11px] leading-relaxed text-warn">{walletWarn}</p>}
             <p className="mt-6 rounded-xl border border-line bg-ink px-4 py-3 font-mono text-[11px] leading-relaxed text-mute">Hard limits checked by the contract: fee ≤ 5% · max buy/sell 0.1–5% · max wallet 0.5–20% · allocation ≤ 10% with 1–365 days vesting · supply fixed forever.</p>
           </fieldset>
         </div>
