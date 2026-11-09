@@ -131,7 +131,7 @@ shots               screenshots of the live app
 
 All code in this repository was written during the NEAR HACKATHON window (from 2026-11-01). There is no pre-hackathon baseline and no earlier product on another chain.
 
-One builder, two independent entries, as the rules allow (Q-015).
+One builder, two independent entries, as the rules allow (Q-015). The other entry is [Taskbond](https://github.com/demir-sama/taskbond), a separate product that shares no code, contracts, or keys with Tripwire.
 
 ## License
 
